@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A new web page">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" href="favicon.ico">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, sans-serif; background: #fafbfc; color: #222; min-height: 100vh; line-height: 1.6; }
+    </style>
+</head>
+
+<body>
+        <!-- Start building your page here -->
+      <div id="app">
+       <h1>{{emoji}}</h1>  
+       <h1>{{status}}</h1>
+       <span>{{message}}</span>
+       <button>{{btnmsg}}</button>
+      </div>
+     
+  
+  <script>
+    const {createApp,ref} = Vue
+    createApp({
+      setup(){
+        const emoji = "😓"
+        
+        return {emoji}
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>
