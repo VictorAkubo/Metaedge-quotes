@@ -1,14 +1,22 @@
 import express from "express"
-import prisma from "./prisma"
+//import prisma from "./lib/prisma.js"
+import {PrismaClient} from "./generated/prisma/client"
 const app = express()
 app.use(express.json())
 
-app.get("/",(req,res)=>{
+const prisma = new PrismaClient()
+app.post("/",async(req,res)=>{
+  
   const {quote,name} = req;
-  await prisma
+  const response = await prisma.post.create({
+    data:{
+      quote,
+      name
+    }
+  })
   res.json({
     message:"your data",
-    data:[1,2,3,4,5,6]
+    data:res
   })
 })
-app.listen(3009)
+app.listen(3000)
