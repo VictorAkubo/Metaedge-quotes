@@ -6,7 +6,7 @@ const author = "victor"
 const getQuote = async ()=>{
   const res = await fetch("http://localhost:5000")
   const data = res.json()
-  
+  main.value = data[0].quote
 }
 </script>
 
@@ -21,7 +21,7 @@ const getQuote = async ()=>{
       <span class="deco-line bottom" />
     </div>
 
-    <button class="gen-btn">
+    <button @click="getQuote" class="gen-btn">
       <span class="btn-icon">✦</span>
       Random Quote
     </button>
