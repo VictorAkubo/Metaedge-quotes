@@ -2,8 +2,8 @@
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "preserve",
+    "moduleResolution": "Bundler",
     "target": "ES2023",
     "strict": true,
     "esModuleInterop": true,
@@ -12,5 +12,5 @@
     "declaration": true,
     "types": ["node"]
   },
-  "include": ["src"]
+  "include": ["src/**/*", "generated/**/*"] 
 }
