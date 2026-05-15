@@ -6,7 +6,7 @@
 </script>
 <template>
   <div>
-      <Header/>
+      <Header route="/submit" routeName="Submit a Quote"/>
   <Main/>
   <Footer/>
   </div>

@@ -1,14 +1,44 @@
 <script setup>
 import { ref } from "vue"
 const main = ref("hello how are you doing today and thank you")
-const author = "victor"
+const author = ref("ugbede")
+const fetched = ref([])
+const usedNumbers = [];
+let randomIndex = 0
+const getQuote = async () => {
+  console.log("clicked")
+  if (fetched.value.length === 0) {
+    const res = await fetch("http://localhost:5000/")
+    const data = await res.json()
+    fetched.value = data;
+    console.log(data)
+    randomIndex = Math.floor(Math.random() * data.length);
+    const getQuote = data[randomIndex]
+    main.value = getQuote.quote
+    author.value = getQuote.name
+  } else {
+    const getUniqueRandomNumber = () => {
+      if (usedNumbers.length >= fetched.value.length) {
+        console.log("All numbers have been used!");
+        usedNumbers.length = 0;
+      }
 
-const getQuote = async ()=>{
-  const res = await fetch("http://localhost:5000")
-  const data = res.json()
-  main.value = data[0].quote
+      let randomNumber;
+      do {
+        randomNumber = Math.floor(Math.random() * fetched.value.length);
+        continue;
+      } while (usedNumbers.includes(randomNumber));
+
+      usedNumbers.push(randomNumber);
+      return randomNumber;
+    };
+    const getQuote = fetched.value[getUniqueRandomNumber()]
+    main.value = getQuote.quote
+    author.value = getQuote.name
+  }
 }
 </script>
+
 
 <template>
   <div class="scene">
@@ -52,7 +82,7 @@ const getQuote = async ()=>{
   background: #111;
   border: 1px solid rgba(180, 145, 80, 0.25);
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.03),
+    0 0 0 1px rgba(255, 255, 255, 0.03),
     0 32px 64px rgba(0, 0, 0, 0.6),
     inset 0 1px 0 rgba(180, 145, 80, 0.1);
   text-align: center;
@@ -60,8 +90,15 @@ const getQuote = async ()=>{
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .deco-line {
@@ -72,8 +109,14 @@ const getQuote = async ()=>{
   height: 1px;
   background: linear-gradient(90deg, transparent, #b49150, transparent);
 }
-.deco-line.top  { top: -1px; }
-.deco-line.bottom { bottom: -1px; }
+
+.deco-line.top {
+  top: -1px;
+}
+
+.deco-line.bottom {
+  bottom: -1px;
+}
 
 .quote-mark {
   font-family: 'Cormorant Garamond', serif;

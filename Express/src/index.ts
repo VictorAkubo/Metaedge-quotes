@@ -1,26 +1,23 @@
 import { prisma } from "../lib/prisma";
 import cors from "cors"
-import express,{json} from "express"
+import express from "express"
 
 const app = express()
-app.use(json())
+app.use(express.json())
 app.use(cors())
 
 app.get("/",async(req,res)=>{
-  const fetched = []
+
   try{
    const response = await prisma.quote.findMany()
-   
-  const randomIndex = Math.floor(Math.random() * response.length);
-   res.json(response[randomIndex])
+   res.json(response)
   }catch(error){
     res.status(500).json(error)
   }
 })
-app.post("/submit",async(req,res)=>{
+app.post("/submit",async(req,res)=>{ 
   const {quote,name} = req.body;
   try{
-  console.log(quote,name)
   const response = await prisma.quote.create({
     data:{
       quote,

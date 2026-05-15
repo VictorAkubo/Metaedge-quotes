@@ -1,20 +1,45 @@
 <script setup>
 import { ref } from "vue"
-
+import Navbar from "../components/Header.vue"
 const quote = ref("")
 const authorName = ref("")
+const loading = ref(false)
 
 const handleSubmit = async() => {
-   const res = await fetch("http://localhost:5000/submit",{
-   "Content-Type":"application/json",
-   body:JSON.stringify({quote,name})
-   })
-  console.log("Submitted:", { quote: quote.value, name: authorName.value })
-  // Add your submission logic here
+  console.log("clicked") 
+  loading.value = true
+try {
+  if (quote.value !== "" && authorName.value !== "") {
+    const res = await fetch("http://localhost:5000/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ quote: quote.value, name: authorName.value })
+    });
+    alert("🔔 submitted thank you for your wisdom")
+    loading.value = false
+    
+    if (!res.ok) {
+      loading.value = false
+      alert("✖️ failed to submit")
+      throw new Error(`Server responded with status: ${res.status}`);
+    }
+    
+    console.log("Submitted:", { quote: quote.value, name: authorName.value });
+    
+  } else {
+    alert("Please fill all fields *Quote and AuthorName*");
+  }
+} catch (error) {
+  console.error("Submission failed:", error);
+}
+
 }
 </script>
 
 <template>
+  <Navbar route="/" routeName="Home"/>
   <div class="scene">
     <div class="card">
       <span class="deco-line top" />
@@ -42,9 +67,9 @@ const handleSubmit = async() => {
           />
         </div>
 
-        <button type="submit" class="gen-btn">
+        <button type="submit" class="gen-btn" :disabled="loading">
           <span class="btn-icon">✦</span>
-          Publish Quote
+           {{ loading ? "Submitting..." : "Publish Quote" }}
         </button>
       </form>
       

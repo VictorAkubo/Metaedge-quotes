@@ -1,5 +1,9 @@
 <script setup>
 import { ref } from "vue"
+const props = defineProps({
+  route:String,
+  routeName:String
+})
 const title = "Victor Paul"
 </script>
 
@@ -13,8 +17,8 @@ const title = "Victor Paul"
       </div>
     </div>
     <nav class="nav">
-     <router-link to="/submit">
-          Submit a Quote
+     <router-link :to="route">
+          {{ routeName }}
      </router-link>
     </nav> </header>
 </template>
