@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
-    "outDir": "./dist",
+    "outDir": "./dist",            // Keep this so compiled files stay organized
     "module": "preserve",
     "moduleResolution": "Bundler",
     "target": "ES2023",
@@ -12,5 +11,6 @@
     "declaration": true,
     "types": ["node"]
   },
-  "include": ["src/**/*", "generated/**/*"] 
+  "include": ["**/*"],             
+  "exclude": ["node_modules", "dist"]
 }
