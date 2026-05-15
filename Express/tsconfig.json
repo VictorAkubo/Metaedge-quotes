@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",            // Keep this so compiled files stay organized
+    "outDir": "./dist",            
     "module": "preserve",
     "moduleResolution": "Bundler",
     "target": "ES2023",
