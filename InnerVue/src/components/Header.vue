@@ -13,9 +13,9 @@ const title = "Victor Paul"
       </div>
     </div>
     <nav class="nav">
-      <a href="#">Explore</a>
-      <a href="#">Authors</a>
-      <a href="#" class="nav-cta">Submit</a>
+     <router-link to="/submit">
+          Submit a Quote
+     </router-link>
     </nav> </header>
 </template>
 

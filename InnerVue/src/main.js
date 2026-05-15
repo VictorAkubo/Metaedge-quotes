@@ -1,6 +1,14 @@
 import './assets/main.css'
-
+import {createRouter,createWebHistory} from "vue-router"
 import { createApp } from 'vue'
 import App from './App.vue'
-
-createApp(App).mount('#app')
+import Home from "./views/Home.vue"
+import Submit from "./views/Submit.vue"
+const router = createRouter({
+  history:createWebHistory(),
+  routes:[
+    {path:"/",component:Home},
+    {path:"/submit", component:Submit}
+    ]
+})
+createApp(App).use(router).mount('#app')

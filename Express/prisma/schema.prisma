@@ -11,8 +11,9 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
-model Quote{
-id Int @id @default(autoincrement())
-quote String
-name String
+
+model quote {
+  id Int @id @default(autoincrement())
+  quote String @unique
+  name String?
 }

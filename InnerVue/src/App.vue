@@ -1,24 +1,16 @@
 <script setup>
   import {ref} from "vue"
-  import Header from "./components/Header.vue"
-  import Main from "./components/Main.vue"
-  import Footer from "@/components/Footer.vue"
 </script>
 <template>
   <div>
-      <Header/>
-  <Main/>
-  <Footer/>
+    <router-view />
   </div>
 
 </template>
 <style scoped>
-  div{
-  width:100%;
+  div {
+  width: 100%;
+  min-height: 100vh; /* This ensures the black background always fills the screen */
   background: #0d0d0d;
-  }
-  
-@media (min-width: 1024px) {
-  
 }
 </style>
