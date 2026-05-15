@@ -10,7 +10,7 @@ const handleSubmit = async() => {
   loading.value = true
 try {
   if (quote.value !== "" && authorName.value !== "") {
-    const res = await fetch("http://localhost:5000/submit", {
+    const res = await fetch("https://metaedge-quotes.onrender.com/submit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

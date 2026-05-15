@@ -8,7 +8,7 @@ let randomIndex = 0
 const getQuote = async () => {
   console.log("clicked")
   if (fetched.value.length === 0) {
-    const res = await fetch("http://localhost:5000/")
+    const res = await fetch("https://metaedge-quotes.onrender.com/")
     const data = await res.json()
     fetched.value = data;
     console.log(data)
