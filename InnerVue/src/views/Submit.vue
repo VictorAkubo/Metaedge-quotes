@@ -4,7 +4,11 @@ import { ref } from "vue"
 const quote = ref("")
 const authorName = ref("")
 
-const handleSubmit = () => {
+const handleSubmit = async() => {
+   const res = await fetch("http://localhost:5000/submit",{
+   "Content-Type":"application/json",
+   body:JSON.stringify({quote,name})
+   })
   console.log("Submitted:", { quote: quote.value, name: authorName.value })
   // Add your submission logic here
 }

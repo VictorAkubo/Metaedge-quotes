@@ -2,6 +2,12 @@
 import { ref } from "vue"
 const main = ref("hello how are you doing today and thank you")
 const author = "victor"
+
+const getQuote = async ()=>{
+  const res = await fetch("http://localhost:5000")
+  const data = res.json()
+  
+}
 </script>
 
 <template>

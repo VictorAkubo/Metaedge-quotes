@@ -12,7 +12,7 @@ datasource db {
   provider = "postgresql"
 }
 
-model quote {
+model Quote {
   id Int @id @default(autoincrement())
   quote String @unique
   name String?
